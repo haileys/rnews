@@ -12,6 +12,7 @@ end
 module Rnews
   class Application < Rails::Application
     
+    REVISION = File.read("#{config.root}/.git/refs/heads/master").chomp
     APP_CONFIG = YAML.load(File.read(File.expand_path("../app_config.yml", __FILE__)))
     
     # Settings in config/environments/* take precedence over those specified here.
