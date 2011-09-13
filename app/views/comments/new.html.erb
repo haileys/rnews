@@ -8,7 +8,6 @@
 	
 	<%= form_for @comment, :url => story_comments_path do |f| %>
 		<%= f.text_area :text %>
-		<%= f.hidden_field :story_id %>
 		<%= f.hidden_field :comment_id %>
 		<%= f.submit "reply" %>
 	<% end %>

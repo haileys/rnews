@@ -2,6 +2,12 @@
 	<%= render :partial => "shared/story", :object => @story %>
 	
 	<h2>Comments</h2>
+	
+	<%= form_for :comment, :url => story_comments_path(@story), :class => "reply" do |f| %>
+		<%= f.text_area :text %>
+		<%= f.submit "post" %>
+	<% end %>
+	
 	<% @story.comments.each do |c| %>
 		<%= render :partial => "shared/comment", :object => c, :locals => { :show_children => true } %>
 	<% end %>

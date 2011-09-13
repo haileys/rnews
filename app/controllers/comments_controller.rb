@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
   def create
     @story = Story.find params[:story_id]
     @comment = Comment.new(params[:comment])
-    @comment.user = current_user
+    @comment.attributes = { :story => @story, :user => current_user }
     if @comment.save
       respond_to do |f|
         f.html { redirect_to story_path(@comment.story) }
