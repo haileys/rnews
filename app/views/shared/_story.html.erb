@@ -10,7 +10,7 @@
 		<% end %>
 	</div>
 	
-	<%= link_to story.title, story, :class => "link" %>
+	<%= link_to story.title, story.url, :class => "link" %>
 	<div class="details">
 		<span class="points"><%= pluralize(story.points, "point") %></span> by <%= link_to story.user.username, story.user %>
 		in <%= link_to story.category.name, story.category %> <%= time_ago_in_words(story.created_at) %> ago
