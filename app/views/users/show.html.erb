@@ -1,8 +1,18 @@
-<div class="content_box">
-	<h2><%= @user.username %></h2>
+<div class="content_box larger">
+	<h2><%= @user.username %>'s posts</h2>
 	<ul class="user_posts">
 		<% @user.posts.each do |p| %>
 			<li><%= render :partial => "shared/#{p.class.name.underscore}", :object => p %></li>
 		<% end %>
 	</ul>
+</div>
+
+<div class="content_box smaller">
+	<h2>User Info</h2>
+	<p>
+		A member for <%= time_ago_in_words(@user.created_at) %>
+	</p>
+	<p class="info_points">
+		<strong class="total"><%= pluralize(@user.points, "point") %></strong>
+	</p>
 </div>
