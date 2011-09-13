@@ -14,7 +14,7 @@
 	<div class="rest">
 		<h3><%= pluralize(comment.points, "point") %> by <%= link_to comment.user.username, comment.user %> <%= time_ago_in_words(comment.created_at) %> ago</h3>
 		<p>
-			<%= auto_link(sanitize(comment.text), :sanitize => false) %>
+			<%= raw auto_link(h(comment.text), :sanitize => false) %>
 		</p>
 		<div class="actions">
 			<%= link_to "reply", reply_story_comment_path(comment.story, comment) %>
