@@ -1,0 +1,13 @@
+<div class="content_box larger">
+	<h2><%= @category.name %> / <%= @view %></h2>
+	<ul class="nav">
+		<% @views.each do |v| %>
+			<li><%= link_to v, view_category_path(@category, v), :class => ("sel" if v == @view) %></li>
+		<% end %>
+	</ul>
+	<ul class="links">
+		<% @stories.each do |s| %>
+			<%= render :partial => "shared/story", :object => s %>
+		<% end %>
+	</ul>
+</div>

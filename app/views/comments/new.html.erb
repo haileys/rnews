@@ -1,0 +1,15 @@
+<div class="content_box larger">
+	<%= render :partial => "shared/story", :object => @story %>
+	
+	<h2>Replying to <%= @replying_to ? "a comment" : "a story" %></h2>
+	<% if @replying_to %>
+		<%= render :partial => "shared/comment", :object => @replying_to %>
+	<% end %>
+	
+	<%= form_for @comment, :url => story_comments_path do |f| %>
+		<%= f.text_area :text %>
+		<%= f.hidden_field :story_id %>
+		<%= f.hidden_field :comment_id %>
+		<%= f.submit "reply" %>
+	<% end %>
+</div>

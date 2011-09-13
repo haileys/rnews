@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		<% if content_for?(:title) %>
+			<%= content_for :title %> &mdash;
+		<% end %>
+		<%= site_config :name %>
+	</title>
+  <%= stylesheet_link_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div class="masthead">
+		<h1>
+			<a href="/"><%= site_config :name %></a>
+			<% if @category %>
+				/ <%= link_to @category.name, @category %>
+			<% end %>
+		</h1>
+		
+		<div class="userinfo">
+			<% if current_user %>
+				Hi there, <%= link_to current_user.username, current_user %>
+				| <%= link_to "Logout", logout_path %>
+			<% else %>
+				<%= link_to "Login", new_session_path %> | <%= link_to "Register", new_user_path %>
+			<% end %>
+		</div>			
+	</div>
+	
+	<ul class="nav">
+		<li><%= link_to "Home", root_path %></li>
+		<li><%= link_to "Categories", categories_path %></li>
+		<li><%= link_to "Submit", new_story_path %></li>
+	</ul>
+	
+	<% if @errors %>
+		<div class="attn bad">
+			<% if @errors.is_a? Hash %>
+				The following errors occurred:
+				<ul>
+					<% @errors.each do |field, errors| %>
+						<% errors.each do |e| %>
+							<li><%= field.to_s.humanize %> <%= e %></li>
+						<% end %>
+					<% end %>
+				</ul>
+			<% else %>
+				<%= @errors %>
+			<% end %>
+		</div>
+	<% end %>
+	
+	<%= yield %>
+	
+	<div class="clear"></div>
+	<div class="footer">
+		&copy; <strong><%= site_config :name %></strong> <%= Time.now.year %>
+	</div>
+</body>	
+<%= javascript_include_tag "application" %>
+</html>

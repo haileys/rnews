@@ -1,0 +1,34 @@
+<div class="comment" id="comment_<%= comment.id %>">
+	<a name="comment_<%= comment.id %>"></a>
+		<div class="voting comment_voting">
+			<%= form_for :vote, :url => vote_story_comment_path(comment.story, comment), :remote => true do |f| %>
+				<input type="hidden" name="vote" value="<%= comment.upvoting_users.include?(current_user) ? 0 : 1 %>" />
+				<%= f.submit "▲", :class => ("sel" if comment.upvoting_users.include? current_user) %>
+			<% end %>
+			<%= form_for :vote, :url => vote_story_comment_path(comment.story, comment), :remote => true do |f| %>
+				<input type="hidden" name="vote" value="<%= comment.downvoting_users.include?(current_user) ? 0 : -1 %>" />
+				<%= f.submit "▼", :class => ("sel" if comment.downvoting_users.include? current_user) %>
+			<% end %>
+		</div>
+
+	<div class="rest">
+		<h3><%= pluralize(comment.points, "point") %> by <%= link_to comment.user.username, comment.user %> <%= time_ago_in_words(comment.created_at) %> ago</h3>
+		<p>
+			<%= comment.text %>
+		</p>
+		<div class="actions">
+			<%= link_to "reply", reply_story_comment_path(comment.story, comment) %>
+			<%= link_to "permalink", story_comment_path(comment.story, comment) %>
+			<% if defined?(show_parent_link) && show_parent_link && comment.comment %>
+				<%= link_to "parent", story_comment_path(comment.story, comment.comment) %>
+			<% end %>
+		</div>
+	</div>
+	<% if defined?(show_children) && show_children %>
+		<div class="children">
+			<% comment.comments.each do |c| %>
+				<%= render :partial => "shared/comment", :object => c, :locals => { :show_children => show_children } %>
+			<% end %>
+		</div>
+	<% end %>
+</div>

@@ -1,0 +1,8 @@
+<% @category_views.each do |v,categories| %>
+	<div class="content_box">
+		<h2><%= v.humanize %></h2>
+		<% categories.each do |c| %>
+			<%= render :partial => "shared/category", :object => c %>
+		<% end %>
+	</div>
+<% end %>

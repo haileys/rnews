@@ -1,0 +1,21 @@
+<div class="content_box larger">
+	<%= render :partial => "shared/story", :object => @story %>
+	
+	<h2>Comments</h2>
+	<% @story.comments.each do |c| %>
+		<%= render :partial => "shared/comment", :object => c, :locals => { :show_children => true } %>
+	<% end %>
+</div>
+
+<div class="content_box smaller">
+	<h2>Story Info</h2>
+	<p>
+		Posted on <%= @story.created_at.strftime "%A, %B %e, %Y" %>
+	</p>
+	<p class="info_points">
+		<strong class="total"><%= pluralize(@story.points, "point") %></strong>
+		(<span class="upvotes">+<%= @story.upvotes.count %></span>,
+		<span class="downvotes">&minus;<%= @story.downvotes.count %></span>,
+		<span class="approval"><%= @story.points > 0 ? ((@story.upvotes.count / @story.points.to_f)*100).round : 0 %>%</span>)
+	</p>
+</div>

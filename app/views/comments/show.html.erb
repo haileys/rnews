@@ -1,0 +1,22 @@
+<div class="content_box larger">
+	<%= render :partial => "shared/story", :object => @comment.story %>
+	
+	<h2>Showing only some comments - <%= link_to "view all comments", @comment.story %></h2>
+	<%= render :partial => "shared/comment", :object => @comment, :locals => { :show_children => true, :show_parent_link => true } %>
+</div>
+
+<div class="content_box smaller">
+	<h2>Comment Info</h2>
+	<p>
+		Posted on <%= @comment.created_at.strftime "%A, %B %e, %Y" %>
+		<% if @comment.comment %>
+			in reply to a <%= link_to "comment", story_comment_path(@comment.comment) %> by <%= link_to @comment.comment.user.username, @comment.comment.user %>
+		<% end %>
+	</p>
+	<p class="info_points">
+		<strong class="total"><%= pluralize(@comment.points, "point") %></strong>
+		(<span class="upvotes">+<%= @comment.upvotes.count %></span>,
+		<span class="downvotes">&minus;<%= @comment.downvotes.count %></span>,
+		<span class="approval"><%= @comment.points > 0 ? ((@comment.upvotes.count / @comment.points.to_f)*100).round : 0 %>%</span>)
+	</p>
+</div>

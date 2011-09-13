@@ -1,0 +1,15 @@
+<div class="content_box">
+	<h2>Login</h2>
+	<%= form_for :session, :url => sessions_path do |f| %>
+		<label for="username">Username</label>
+		<input name="username" id="username" autofocus />
+		<label for="password">Password</label>
+		<input name="password" id="password" type="password" />
+		
+		<%= f.submit "login" %>
+	<% end %>
+	
+	<p>
+		<%= link_to "Don't have an account yet?", new_user_path %>
+	</p>
+</div>
