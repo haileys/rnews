@@ -1,8 +1,8 @@
 <li class="linkbox">
 	<%= link_to category.name, category, :class => "link" %>
-	<% if current_user %>
-		<a href="#" class="favorite">&#9733;</a>
-	<% end %>
+	<%# if current_user %>
+		<%#<a href="#" class="favorite">&#9733;</a>%>
+	<%# end %>
 	<div class="details">
 		<%= pluralize(category.stories.count, "story") %> | <%= pluralize(1 || category.users.count, "subscriber") %> | Created <%= time_ago_in_words(category.created_at) %> ago
 	</div>
