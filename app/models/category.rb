@@ -13,7 +13,7 @@ class Category < ActiveRecord::Base
     name
   end
 
-  VIEWS = %w(popular active newest)
+  VIEWS = %w(active newest)
   def self.popular
     []
     #TODO
