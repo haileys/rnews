@@ -56,7 +56,7 @@
 	
 	<div class="clear"></div>
 	<div class="footer">
-		&copy; <strong><%= site_config :name %></strong> <%= Time.now.year %>
+		<strong><%= site_config :name %></strong> <%= Time.now.year %> &mdash; revision <%= link_to Rnews::Application::REVISION, "https://github.com/charliesome/rnews/commit/#{Rnews::Application::REVISION}" %>
 	</div>
 </body>	
 <%= javascript_include_tag "application" %>
