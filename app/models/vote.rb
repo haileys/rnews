@@ -27,4 +27,10 @@ class Vote < ActiveRecord::Base
       comment.recount
     end
   end
+  
+  after_create :update_user_score
+  def update_user_score
+    user.points += vote
+    user.save!
+  end
 end

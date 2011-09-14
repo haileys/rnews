@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   validates :username, :uniqueness => { :case_sensitive => false },
     :length => { :in => 3..32 },
     :format => { :with => /\A[a-z0-9_]*\z/i, :message => 'may only contain alphanumeric characters and underscores' }
-  validates :password, :length => { :minimum => 6 }
+  validates :password, :length => { :minimum => 6 }, :if => lambda{ new_record? || password.present? }
   
   def posts
     (stories.limit(10) + comments.limit(10)).sort { |a,b| a.created_at <=> b.created_at }.reverse.take(10)
@@ -21,6 +21,11 @@ class User < ActiveRecord::Base
   def remove_password_digest_error
     # this is a hacky way to remove the "password digest can't be blank" error
     errors[:password_digest].clear
+  end
+  
+  before_create :set_points_to_zero
+  def set_points_to_zero
+    self.points = 0
   end
   
   def to_param

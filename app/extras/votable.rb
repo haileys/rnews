@@ -7,9 +7,9 @@ module Votable
       has_many :upvoting_users, :class_name => "User", :through => :votes, :source => :user, :conditions => "votes.vote > 0"
       has_many :downvoting_users, :class_name => "User", :through => :votes, :source => :user, :conditions => "votes.vote < 0"
 
-      before_create :set_points_to_zero
-      def set_points_to_zero
-        self.points = 0
+      after_create :create_upvote_from_user
+      def create_upvote_from_user
+        Vote.create! :user => user, :vote => 1, "#{self.class.name.underscore}_id" => id
       end
 
       def recount
