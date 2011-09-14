@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+general:
+  name: general
+  user_id: 1
+
+pics:
+  name: pics
+  user_id: 1
