@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
   validates :username, :uniqueness => { :case_sensitive => false },
     :length => { :in => 3..32 },
     :format => { :with => /\A[a-z0-9_]*\z/i, :message => 'may only contain alphanumeric characters and underscores' }
-  validates :password, :length => { :minimum => 6 }, :if => lambda{ new_record? || password.present? }
+  validates :password, :presence => true, :confirmation => true, :length => { :minimum => 6 }, :if => lambda{ new_record? || password.present? }
+  validates :password_confirmation, :presence => true, :if => "password"
   
   def posts
     (stories.limit(10) + comments.limit(10)).sort { |a,b| a.created_at <=> b.created_at }.reverse.take(10)
