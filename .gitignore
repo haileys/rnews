@@ -3,3 +3,7 @@ db/*.sqlite3
 log/*.log
 tmp/
 .sass-cache/
+config/database.yml
+config/initializers/secret_token.rb
+Gemfile.lock
+.DS_Store
