@@ -18,6 +18,7 @@ class StoriesController < ApplicationController
   
   def show
     @story = Story.find params[:id]
+    @category = @story.category
   end
   
   def vote
