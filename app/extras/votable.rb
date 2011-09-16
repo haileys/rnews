@@ -9,7 +9,7 @@ module Votable
 
       after_create :create_upvote_from_user
       def create_upvote_from_user
-        Vote.create! :user => user, :vote => 1, "#{self.class.name.underscore}_id" => id
+        Vote.create! :user => user, :vote => 1, self.class.name.underscore => self
       end
 
       def recount
