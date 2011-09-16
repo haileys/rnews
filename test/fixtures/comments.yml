@@ -17,6 +17,12 @@ one_three:
     comment: one_one
     points: 1
     text: below hi charlie
+    
+one_four:
+    user: fanboy
+    story: one
+    points: 99
+    text: top comment
 
 two_one:
     user: fanboy

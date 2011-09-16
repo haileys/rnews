@@ -35,8 +35,7 @@ class CommentTest < ActiveSupport::TestCase
     comment = Comment.new(:text => "hello world")
     comment.user = users(:charlie)
     comment.story = stories(:one)
-    # this SHOULD be comment.save, but something is acting weird
-    assert comment.valid?
+    assert comment.save
   end
   
   test "should save comment with parent comment" do
@@ -44,16 +43,14 @@ class CommentTest < ActiveSupport::TestCase
     comment.user = users(:charlie)
     comment.story = stories(:one)
     comment.comment = comments(:one_one)
-    # this SHOULD be comment.save
-    assert comment.valid?
+    assert comment.save
   end
   
   test "should mass assign parent comment id" do
     comment = Comment.new(:text => "hello world", :comment_id => comments(:one_one).id)
     comment.user = users(:charlie)
     comment.story = stories(:one)
-    # this SHOULD be comment.save
-    assert comment.valid?
+    assert comment.save
   end
   
   test "should not save comment with mismatching story and comment" do

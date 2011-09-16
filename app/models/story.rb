@@ -20,6 +20,7 @@ class Story < ActiveRecord::Base
   validates :title, :length => { :in => 2..255 }
   validates :url, :url => true
   validates :user, :presence => true
+  validates :category_name, :presence => true, :on => :create
   
   validate :validate_category_exists, :if => "category_name"
   def validate_category_exists
