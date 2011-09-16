@@ -1,3 +1,6 @@
+rnews [![Build Status](https://secure.travis-ci.org/charliesome/rnews.png)]
+=====
+
 You'll need to create the files below to run this app.
 
 ## `config/database.yml`
