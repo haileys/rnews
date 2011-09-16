@@ -7,3 +7,7 @@ general:
 pics:
   name: pics
   user: fanboy
+  
+ranking_test:
+  name: ranking_test
+  user: charlie

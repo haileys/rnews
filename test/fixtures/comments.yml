@@ -1,31 +1,31 @@
 one_one:
-    user: charlie
-    story: one
-    points: 0
-    text: this is a test comment
+  user: charlie
+  story: one
+  points: 0
+  text: this is a test comment
     
 one_two:
-    user: charlie
-    story: one
-    comment: one_one
-    points: 2
-    text: hi charlie
+  user: charlie
+  story: one
+  comment: one_one
+  points: 2
+  text: hi charlie
     
 one_three:
-    user: fanboy
-    story: one
-    comment: one_one
-    points: 1
-    text: below hi charlie
-    
+  user: fanboy
+  story: one
+  comment: one_one
+  points: 1
+  text: below hi charlie
+  
 one_four:
-    user: fanboy
-    story: one
-    points: 99
-    text: top comment
+  user: fanboy
+  story: one
+  points: 99
+  text: top comment
 
 two_one:
-    user: fanboy
-    story: two
-    points: 0
-    text: test test test
+  user: fanboy
+  story: two
+  points: 0
+  text: test test test

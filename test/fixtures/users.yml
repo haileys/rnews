@@ -1,18 +1,12 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
-
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
 charlie:
-    username: charlie
-    password_digest: "$2a$10$vgUW19llGNOigwPFmGirG.fD755n1pClyia2MsTOwtTp1JUIZyiAy" # foo
-    admin: true
-    points: 0
-    bio: i make cool stuff
-    
+  username: charlie
+  password_digest: "$2a$10$vgUW19llGNOigwPFmGirG.fD755n1pClyia2MsTOwtTp1JUIZyiAy" # foo
+  admin: true
+  points: 0
+  bio: i make cool stuff
+  
 fanboy:
-    username: fanboy
-    password_digest: "$2a$10$5UgPYhxHUhKnjSp4qKgoW.cFrY747ex/MhIRqh3m1y7rzbdjIDzf2" # bar
-    admin: true
-    points: 0
+  username: fanboy
+  password_digest: "$2a$10$5UgPYhxHUhKnjSp4qKgoW.cFrY747ex/MhIRqh3m1y7rzbdjIDzf2" # bar
+  admin: true
+  points: 0

@@ -51,7 +51,7 @@ class CategoryTest < ActiveSupport::TestCase
     assert_instance_of Array, Category::VIEWS
   end
   
-  test "should return categories in descending chronological order for Category#newest" do
+  test "should return categories in descending chronological order for Category.newest" do
     last = nil
     Category.newest.each do |c|
       assert(last.nil? || last >= c.created_at)
@@ -59,12 +59,22 @@ class CategoryTest < ActiveSupport::TestCase
     end
   end
   
-  test "should return categories in descending order of number of posts in the last 48 hours for Category#active" do
+  test "should return categories in descending order of number of posts in the last 48 hours for Category.active" do
     last = nil
     Category.active.each do |c|
       n = c.stories.where("created_at > ?", Time.now - 2.days).count
       assert(last.nil? || last >= n)
       last = n
     end
+  end
+  
+  test "should use correct ranking algorithm for Category#top" do    
+    assert_equal [stories(:r_one), stories(:r_two), stories(:r_three), stories(:r_four)],
+      categories(:ranking_test).top
+  end
+  
+  test "should use correct ranking algorithm for Category#latest" do
+    assert_equal [stories(:r_one), stories(:r_three), stories(:r_two), stories(:r_four)],
+      categories(:ranking_test).latest
   end
 end

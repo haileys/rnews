@@ -1,13 +1,45 @@
 one:
-    title: one
-    url: http://does.not.exist/
-    points: 0
-    user: charlie
-    category: general
-    
+  title: one
+  url: http://does.not.exist/
+  points: 0
+  user: charlie
+  category: general
+  
 two:
-    title: two
-    url: http://some.other.url/
-    points: 0
-    user: charlie
-    category: pics
+  title: two
+  url: http://some.other.url/
+  points: 0
+  user: charlie
+  category: pics
+  
+r_one:
+  title: "ranking test #1"
+  url: http://doesnt.matter/
+  points: 42
+  user: charlie
+  category: ranking_test
+  created_at: <%= Time.now - 1.hour %>
+  
+r_two:
+  title: "ranking test #2"
+  url: http://doesnt.matter/
+  points: 103
+  user: charlie
+  category: ranking_test
+  created_at: <%= Time.now - 3.hours %>
+  
+r_three:
+  title: "ranking test #3"
+  url: http://doesnt.matter/
+  points: 84
+  user: charlie
+  category: ranking_test
+  created_at: <%= Time.now - 3.hours + 1.minute %>
+  
+r_four:
+  title: "ranking test #4"
+  url: http://doesnt.matter/
+  points: 304
+  user: charlie
+  category: ranking_test
+  created_at: <%= Time.now - 12.hours %>

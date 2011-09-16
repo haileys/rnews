@@ -22,7 +22,7 @@ class Category < ActiveRecord::Base
     
   def views; %w(top latest); end  
   def top
-    stories.order("(points - 1)/pow((unix_timestamp() - unix_timestamp(created_at))/3600 + 1, 1.5) desc")
+    stories.order("( (points - 1) / pow( ( (unix_timestamp() - unix_timestamp(created_at)) / 3600.0) + 1, 1.5) ) DESC")
   end
   def latest
     stories.order("created_at DESC")
