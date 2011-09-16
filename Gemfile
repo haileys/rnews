@@ -13,6 +13,7 @@ group :assets do
 end
 
 group :test do
+  gem 'simplecov', :require => false
   # Pretty printed test output
   gem 'turn', :require => false
 end

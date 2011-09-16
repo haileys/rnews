@@ -95,4 +95,20 @@ class UserTest < ActiveSupport::TestCase
     fanboy.update_attributes(:username => "rational_thinker")
     assert_equal "fanboy", fanboy.reload.username
   end
+  
+  test "User.posts should return both stories and comments" do
+    charlie = users(:charlie)
+    assert charlie.posts.any? { |o| o.is_a?(Story) }
+    assert charlie.posts.any? { |o| o.is_a?(Comment) }
+  end
+  
+  test "User.posts should return only stories and comments" do
+    charlie = users(:charlie)
+    assert charlie.posts.all? { |o| o.is_a?(Story) || o.is_a?(Comment) }
+  end
+  
+  test "should return username for to_param" do
+    user = User.first
+    assert_equal user.to_param, user.username
+  end
 end

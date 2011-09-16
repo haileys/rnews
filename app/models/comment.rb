@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  attr_accessible :text, :user, :story, :comment, :story_id, :comment_id
+  attr_accessible :text, :story, :comment, :story_id, :comment_id
   attr_readonly :story_id, :comment_id
   
   belongs_to :user
@@ -10,10 +10,10 @@ class Comment < ActiveRecord::Base
   include Votable
   
   validates :text, :length => { :minimum => 5 }
-  validates_presence_of :story_id
-  validates_presence_of :user_id
+  validates_presence_of :story
+  validates_presence_of :user
   
-  validate :parent_comment_is_of_same_story, :if => "comment_id"
+  validate :parent_comment_is_of_same_story, :if => "comment"
   def parent_comment_is_of_same_story
     if comment.story != story
       errors[:story] << "is not the same as parent comment"

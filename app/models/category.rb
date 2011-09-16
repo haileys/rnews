@@ -7,18 +7,16 @@ class Category < ActiveRecord::Base
   validates :name, :length => { :in => 2..64 },
     :format => { :with => /\A[a-z0-9_]*\z/, :message => 'may only contain lowercase alphanumeric characters and underscores' },
     :uniqueness => true
-  validates :user_id, :presence => true
+  validates :user, :presence => true
   
   def to_param
     name
   end
 
   VIEWS = %w(active newest)
-  def self.popular
-    []
-    #TODO
-    #joins(:favorites).group("categories.id").order("COUNT(favorites.id) DESC")
-  end
+#  def self.popular
+#    joins(:favorites).group("categories.id").order("COUNT(favorites.id) DESC")
+#  end
   scope :active, joins(:stories).where("stories.created_at > ?", Time.now - 2.days).group("categories.id").order("COUNT(stories.id) DESC")
   scope :newest, order("created_at DESC")
     

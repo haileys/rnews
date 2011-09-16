@@ -2,8 +2,8 @@
 
 general:
   name: general
-  user_id: 1
+  user: charlie
 
 pics:
   name: pics
-  user_id: 1
+  user: fanboy

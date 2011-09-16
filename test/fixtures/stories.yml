@@ -1,0 +1,13 @@
+one:
+    title: one
+    url: http://does.not.exist/
+    points: 0
+    user: charlie
+    category: general
+    
+two:
+    title: two
+    url: http://some.other.url/
+    points: 0
+    user: charlie
+    category: pics

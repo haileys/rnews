@@ -6,9 +6,9 @@ class Vote < ActiveRecord::Base
   belongs_to :comment
   
   validates :vote, :numericality => { :only_integer => true }, :inclusion => { :in => -1..1 }
-  validates :user_id, :presence => true
-  validates :story_id, :presence => true, :if => "comment_id.nil?"
-  validates :comment_id, :presence => true, :if => "story_id.nil?"
+  validates :user, :presence => true
+  validates :story, :presence => true, :if => "comment_id.nil?"
+  validates :comment, :presence => true, :if => "story_id.nil?"
   
   before_create :delete_existing_vote
   def delete_existing_vote
