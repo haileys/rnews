@@ -42,7 +42,7 @@ class CommentsController < ApplicationController
         if request.xhr?
           render :partial => "shared/comment", :object => @comment
         else
-          redirect_to @comment
+          redirect_to @comment.story
         end
       end
       f.json { render :json => vote.valid? }
