@@ -16,11 +16,12 @@ if status["last_build_status"] == 0
   
   unless output.include? "Already up-to-date"
     fork do
-      $stdout = File.open("/dev/null", "w")
+      $stdout = $stderr = File.open("/dev/null", "w")
       system("rake test")
       exit!
     end
     
+    system("rake db:migrate")
     system("touch tmp/restart.txt")
     puts "Restarted app"
   end
