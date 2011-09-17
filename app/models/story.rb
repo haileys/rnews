@@ -7,7 +7,7 @@ class UrlValidator < ActiveModel::EachValidator
 end
 
 class Story < ActiveRecord::Base
-  attr_accessible :title, :url, :category_name
+  attr_accessible :title, :url, :category_name, :category_id
   attr_accessor :category_name
   
   belongs_to :category
@@ -20,7 +20,7 @@ class Story < ActiveRecord::Base
   validates :title, :length => { :in => 2..255 }
   validates :url, :url => true
   validates :user, :presence => true
-  validates :category_name, :presence => true, :on => :create
+  validates :category_name, :presence => true, :if => "category.nil?"
   
   validate :validate_category_exists, :if => "category_name"
   def validate_category_exists
