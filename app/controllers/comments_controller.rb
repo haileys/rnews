@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_filter :require_user, :only => [:new, :create]
+  before_filter :require_user, :only => [:new, :create, :vote]
   
   def new
     @story = Story.find params[:story_id]

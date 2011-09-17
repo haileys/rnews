@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
-  before_filter :require_user, :only => [:new, :create]
-    
+  before_filter :require_user, :only => [:new, :create, :vote]
+  
   def new
     @story = Story.new params[:story]
   end
