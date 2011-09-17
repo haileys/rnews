@@ -58,6 +58,7 @@
 	<div class="footer">
 		<strong><%= site_config :name %></strong> <%= Time.now.year %> &mdash; revision <%= link_to Rnews::Application::REVISION, "https://github.com/charliesome/rnews/commit/#{Rnews::Application::REVISION}" %>
 	</div>
-</body>	
+</body>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 <%= javascript_include_tag "application" %>
 </html>
