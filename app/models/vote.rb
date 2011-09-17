@@ -7,8 +7,16 @@ class Vote < ActiveRecord::Base
   
   validates :vote, :numericality => { :only_integer => true }, :inclusion => { :in => -1..1 }
   validates :user, :presence => true
+  
   validates :story, :presence => true, :if => "comment_id.nil?"
   validates :comment, :presence => true, :if => "story_id.nil?"
+  
+  validate :comment_and_story_are_mutually_exclusive
+  def comment_and_story_are_mutually_exclusive
+    if comment && story
+      errors[:base] << "A vote may only have a comment or a story, not both"
+    end
+  end
   
   before_create :delete_existing_vote
   def delete_existing_vote
