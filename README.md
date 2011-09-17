@@ -3,8 +3,11 @@ rnews
 
 ## Cool Stuff:
 
-**CI:** ![Build Status](https://secure.travis-ci.org/charliesome/rnews.png)
-**Test Coverage:** http://news.charlie.bz/coverage
+#### CI
+![Build Status](https://secure.travis-ci.org/charliesome/rnews.png)
+
+#### Test Coverage:
+http://news.charlie.bz/coverage
 
 ## Installation:
 
