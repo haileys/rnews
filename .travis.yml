@@ -5,6 +5,9 @@ before_script:
     - "bundle exec rake db:migrate"
     - "echo \"Rnews::Application.config.secret_token = '$(bundle exec rake secret)'\" > config/initializers/secret_token.rb"
 script: "bundle exec rake test"
+notifications:
+    email: false
+
 rvm:
     - 1.9.2
     - 1.9.3
