@@ -1,12 +1,14 @@
 <div class="linkbox">
 	<div class="voting link_voting">
-		<%= form_for :vote, :url => vote_story_path(story), :remote => true do |f| %>
-			<input type="hidden" name="vote" value="<%= story.upvoting_users.include?(current_user) ? 0 : 1 %>" />
-			<%= f.submit "▲", :class => ("sel" if story.upvoting_users.include? current_user) %>
-		<% end %>
-		<%= form_for :vote, :url => vote_story_path(story), :remote => true do |f| %>
-			<input type="hidden" name="vote" value="<%= story.downvoting_users.include?(current_user) ? 0 : -1 %>" />
-			<%= f.submit "▼", :class => ("sel" if story.downvoting_users.include? current_user) %>
+		<% if current_user %>
+			<%= form_for :vote, :url => vote_story_path(story), :remote => true do |f| %>
+				<input type="hidden" name="vote" value="<%= story.upvoting_users.include?(current_user) ? 0 : 1 %>" />
+				<%= f.submit "▲", :class => ("sel" if story.upvoting_users.include? current_user) %>
+			<% end %>
+			<%= form_for :vote, :url => vote_story_path(story), :remote => true do |f| %>
+				<input type="hidden" name="vote" value="<%= story.downvoting_users.include?(current_user) ? 0 : -1 %>" />
+				<%= f.submit "▼", :class => ("sel" if story.downvoting_users.include? current_user) %>
+			<% end %>
 		<% end %>
 	</div>
 	

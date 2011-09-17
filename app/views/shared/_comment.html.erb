@@ -1,13 +1,15 @@
 <div class="comment" id="comment_<%= comment.id %>">
 	<a name="comment_<%= comment.id %>"></a>
 		<div class="voting comment_voting">
-			<%= form_for :vote, :url => vote_story_comment_path(comment.story, comment), :remote => true do |f| %>
-				<input type="hidden" name="vote" value="<%= comment.upvoting_users.include?(current_user) ? 0 : 1 %>" />
-				<%= f.submit "▲", :class => ("sel" if comment.upvoting_users.include? current_user) %>
-			<% end %>
-			<%= form_for :vote, :url => vote_story_comment_path(comment.story, comment), :remote => true do |f| %>
-				<input type="hidden" name="vote" value="<%= comment.downvoting_users.include?(current_user) ? 0 : -1 %>" />
-				<%= f.submit "▼", :class => ("sel" if comment.downvoting_users.include? current_user) %>
+			<% if current_user %>
+				<%= form_for :vote, :url => vote_story_comment_path(comment.story, comment), :remote => true do |f| %>
+					<input type="hidden" name="vote" value="<%= comment.upvoting_users.include?(current_user) ? 0 : 1 %>" />
+					<%= f.submit "▲", :class => ("sel" if comment.upvoting_users.include? current_user) %>
+				<% end %>
+				<%= form_for :vote, :url => vote_story_comment_path(comment.story, comment), :remote => true do |f| %>
+					<input type="hidden" name="vote" value="<%= comment.downvoting_users.include?(current_user) ? 0 : -1 %>" />
+					<%= f.submit "▼", :class => ("sel" if comment.downvoting_users.include? current_user) %>
+				<% end %>
 			<% end %>
 		</div>
 
