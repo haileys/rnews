@@ -23,7 +23,7 @@ You'll need to create the files below to run this app.
       pool: 5
       timeout: 5000
 
-### config/initializers/secret_token.rb
+### config/app_config.yml
 
-    Rnews::Application.config.secret_token = 'fill this with some really really really really really long secret token'
-
+    name: rnews
+	secret_token: some really really long secret token
