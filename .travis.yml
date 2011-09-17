@@ -3,6 +3,7 @@ before_script:
     - "cp config/database.ci.yml config/database.yml"
     - "mysql -e 'create database rnews_test;' > /dev/null"
     - "bundle exec rake db:migrate"
+    - "echo \"Rnews::Application.config.secret_token = '$(bundle exec rake secret)'\" > config/initializers/secret_token.rb"
 script: "bundle exec rake test"
 rvm:
     - 1.9.2
