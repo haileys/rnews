@@ -10,10 +10,15 @@ if status["last_build_status"] == 0
   # successful build
   build = JSON.parse(open("http://travis-ci.org/#{REPO}/builds/#{status["last_build_id"]}.json").read)
   
-  print "Deploying to #{build["commit"]}... "
+  puts "Deploying to #{build["commit"]}... "
   
-  system("rake test &> /dev/null &")
-  system("git fetch && git merge #{build["commit"]} && touch tmp/restart.txt")
+  system("rake test >/dev/null &")
+  output = `git fetch && git merge #{build["commit"]}`
   
-  puts "ok."
+  unless output.include? "Already up-to-date"
+    system("touch tmp/restart.txt")
+    puts "Restarted app"
+  end
+  
+  puts "Ok."
 end
