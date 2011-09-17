@@ -63,6 +63,13 @@ class StoryTest < ActiveSupport::TestCase
     assert story.errors.messages[:category_name]
   end
   
+  test "should save story with category id rather than name" do
+    story = Story.new(:title => "test", :url => "http://google.com", :category_id => categories(:general).id)
+    story.user = users(:charlie)
+    assert story.save
+    assert_equal categories(:general), story.category
+  end
+  
   test "should save story with http url" do
     story = Story.new(:title => "test", :url => "http://google.com", :category_name => "general")
     story.user = users(:charlie)
