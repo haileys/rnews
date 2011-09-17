@@ -9,11 +9,7 @@ module ApplicationHelper
     @current_user
   end
   
-  def site_config(key = nil)
-    if key
-      Rnews::Application::APP_CONFIG[key.to_s]
-    else
-      Rnews::Application::APP_CONFIG
-    end
+  def site_config(key)
+    Rnews::Application::APP_CONFIG[key.to_s]
   end
 end
