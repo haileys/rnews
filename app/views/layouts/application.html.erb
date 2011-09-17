@@ -37,10 +37,10 @@
 	
 	<% if @errors %>
 		<div class="attn bad">
-			<% if @errors.is_a? ActiveRecord::Errors %>
+			<% if @errors.respond_to? :full_messages %>
 				The following errors occurred:
 				<ul>
-					<% @errors.each_full do |msg| %>
+					<% @errors.full_messages.each do |msg| %>
 						<li><%= msg %></li>
 					<% end %>
 				</ul>
