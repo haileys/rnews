@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       self.current_user = @user
       redirect_back_or_default
     else
-      @errors = @user.errors.messages
+      @errors = @user.errors
       render "new"
     end
   end

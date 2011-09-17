@@ -11,7 +11,7 @@ class StoriesController < ApplicationController
     if @story.save
       redirect_to @story
     else
-      @errors = @story.errors.messages
+      @errors = @story.errors
       render "new"
     end
   end

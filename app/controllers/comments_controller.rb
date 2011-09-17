@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
     else
       respond_to do |f|
         f.html do
-          @errors = @comment.errors.messages
+          @errors = @comment.errors
           render "new"
         end
         f.json { render :json => @comment, :with => @comment.errors.messages }

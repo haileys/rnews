@@ -37,13 +37,11 @@
 	
 	<% if @errors %>
 		<div class="attn bad">
-			<% if @errors.is_a? Hash %>
+			<% if @errors.is_a? ActiveRecord::Errors %>
 				The following errors occurred:
 				<ul>
-					<% @errors.each do |field, errors| %>
-						<% errors.each do |e| %>
-							<li><%= field.to_s.humanize %> <%= e %></li>
-						<% end %>
+					<% @errors.each_full do |msg| %>
+						<li><%= msg %></li>
 					<% end %>
 				</ul>
 			<% else %>
