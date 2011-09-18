@@ -251,12 +251,18 @@ ul.nav {
 			display:block;
 			margin-top:-28px;
 			float:right;
-			text-decoration:none;
-			color:#f80;
-			font-size:20px;
-			height:20px;
-			line-height:20px;
-			vertical-align:middle;
+			input {
+				text-decoration:none;
+				color:#f80;
+				font-size:20px;
+				height:20px;
+				line-height:20px;
+				vertical-align:middle;
+				border:none;
+				background:none;
+				padding:0px;
+				cursor:pointer;
+			}
 		}
 		.details {
 			display:block;

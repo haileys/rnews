@@ -111,4 +111,24 @@ class UserTest < ActiveSupport::TestCase
     user = User.first
     assert_equal user.to_param, user.username
   end
+  
+  test "should subscribe/unsubscribe" do
+    charlie = users(:charlie)
+    pics = categories(:pics)
+    assert_difference "charlie.favorite_categories.count" do
+      charlie.subscribe pics
+    end
+    assert_difference "charlie.favorite_categories.count", -1 do
+      charlie.unsubscribe pics
+    end
+  end
+  
+  test "should not complain if user tries to subscribe to already subscribed category" do
+    charlie = users(:charlie)
+    pics = categories(:pics)
+    charlie.subscribe pics
+    assert_nothing_raised { charlie.subscribe pics }
+    charlie.unsubscribe pics
+    assert_nothing_raised { charlie.unsubscribe pics }
+  end
 end

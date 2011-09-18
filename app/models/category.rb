@@ -3,6 +3,8 @@ class Category < ActiveRecord::Base
   
   belongs_to :user
   has_many :stories
+  has_many :favorites
+  has_many :subscribers, :through => :favorites, :source => :user
   
   validates :name, :length => { :in => 2..64 },
     :format => { :with => /\A[a-z0-9_]*\z/, :message => 'may only contain lowercase alphanumeric characters and underscores' },
@@ -13,10 +15,10 @@ class Category < ActiveRecord::Base
     name
   end
 
-  VIEWS = %w(active newest)
-#  def self.popular
-#    joins(:favorites).group("categories.id").order("COUNT(favorites.id) DESC")
-#  end
+  VIEWS = %w(active newest popular)
+  def self.popular
+    joins(:favorites).group("categories.id").order("COUNT(favorites.id) DESC")
+  end
   scope :active, joins(:stories).where("stories.created_at > ?", Time.now - 2.days).group("categories.id").order("COUNT(stories.id) DESC")
   scope :newest, order("created_at DESC")
     

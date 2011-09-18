@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110913073125) do
+ActiveRecord::Schema.define(:version => 20110917103019) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -37,6 +37,17 @@ ActiveRecord::Schema.define(:version => 20110913073125) do
   add_index "comments", ["points"], :name => "index_comments_on_points"
   add_index "comments", ["story_id"], :name => "index_comments_on_story_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "favorites", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "favorites", ["category_id"], :name => "index_favorites_on_category_id"
+  add_index "favorites", ["created_at"], :name => "index_favorites_on_created_at"
+  add_index "favorites", ["user_id"], :name => "index_favorites_on_user_id"
 
   create_table "stories", :force => true do |t|
     t.string   "title"

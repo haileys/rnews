@@ -1,8 +1,16 @@
 <li class="linkbox">
 	<%= link_to category.name, category, :class => "link" %>
-	<%# if current_user %>
-		<%#<a href="#" class="favorite">&#9733;</a>%>
-	<%# end %>
+	<% if current_user %>
+		<% if current_user.favorite_categories.include? category %>
+			<%= form_for :favorite, :html => { :class => "favorite" }, :url => unsubscribe_category_path(category) do |f| %>
+				<%= f.submit raw("&#9733;"), :title => "#{category.name} is favorited" %>
+			<% end %>
+		<% else %>
+			<%= form_for :favorite, :html => { :class => "favorite" }, :url => subscribe_category_path(category) do |f| %>
+				<%= f.submit raw("&#9734;"), :title => "#{category.name} is not in your favorites" %>
+			<% end %>
+		<% end %>
+	<% end %>
 	<div class="details">
 		<%= pluralize(category.stories.count, "story") %> | <%= pluralize(1 || category.users.count, "subscriber") %> | Created <%= time_ago_in_words(category.created_at) %> ago
 	</div>

@@ -68,6 +68,15 @@ class CategoryTest < ActiveSupport::TestCase
     end
   end
   
+  test "should return categories in descending order of number of subscribers for Category.popular" do
+    last = nil
+    Category.popular.each do |c|
+      n = c.subscribers.count
+      assert(last.nil? || last >= n)
+      last = n
+    end
+  end
+  
   test "should use correct ranking algorithm for Category#top" do    
     assert_equal [stories(:r_one), stories(:r_two), stories(:r_three), stories(:r_four)],
       categories(:ranking_test).top

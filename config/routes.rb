@@ -9,6 +9,8 @@ Rnews::Application.routes.draw do
   resources :categories do
     member do
       get 'view/:view', :as => :view, :action => :show
+      post 'subscribe', :as => :subscribe, :action => :subscribe
+      post 'unsubscribe', :as => :unsubscribe, :action => :unsubscribe
     end
   end
   resources :stories do
