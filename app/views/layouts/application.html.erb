@@ -22,7 +22,7 @@
 		<div class="userinfo">
 			<% if current_user %>
 				Hi there, <%= link_to current_user.username, current_user %>
-				| <%= link_to "Logout", logout_path %>
+				| <%= link_to "Logout", session_path, :method => "delete" %>
 			<% else %>
 				<%= link_to "Login", new_session_path %> | <%= link_to "Register", new_user_path %>
 			<% end %>

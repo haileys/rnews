@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def destroy
-    session[:user_id] = nil
+    reset_session
     redirect_back_or_default request.referer
   end
   

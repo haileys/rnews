@@ -20,7 +20,7 @@ class SessionsControllerTest < ActionController::TestCase
   end
   
   test "should logout" do
-    get :destroy, {}, { :uid => users(:charlie) }
+    delete :destroy, {}, { :uid => users(:charlie) }
     assert_nil @controller.current_user
     assert_nil session[:user_id]
     assert_redirected_to "/"

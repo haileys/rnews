@@ -2,10 +2,8 @@ Rnews::Application.routes.draw do
   
   root :to => 'home#index'
   
-  match "/sessions/logout" => "sessions#destroy", :as => :logout
-  
   resources :users
-  resources :sessions
+  resource :session
   resources :categories do
     member do
       get 'view/:view', :as => :view, :action => :show
